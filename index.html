@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Rock Paper Scissors - Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🤖 AI Rock Paper Scissors</h1>
+      <div class="controls">
+        <span id="aiIndicator" class="chip">AI: waiting…</span>
+        <button id="cameraToggle" class="btn secondary">📷 Camera</button>
+        <button id="themeToggle" class="btn outlined">🌙 Dark</button>
+      </div>
+    </header>
+
+    <!-- Camera Preview -->
+    <div class="camera-preview-container hidden">
+      <button class="preview-close">×</button>
+      <video id="previewVideo" class="camera-preview" playsinline muted></video>
+      <div class="preview-label">Camera Preview</div>
+    </div>
+
+    <main class="game">
+      <div class="arena">
+        <div class="battle-field">
+          <div class="player human" id="humanPlayer">
+            <div class="avatar">👤</div>
+            <div class="hand" id="humanHand">✋</div>
+            <div class="label">You</div>
+          </div>
+          <div class="vs-indicator">
+            <div class="countdown" id="countdown">Ready?</div>
+            <div class="pulse-ring"></div>
+          </div>
+          <div class="player ai" id="aiPlayer">
+            <div class="avatar">🤖</div>
+            <div class="hand" id="aiHand">✋</div>
+            <div class="label">AI</div>
+          </div>
+        </div>
+        <div class="result-card" id="resultCard">
+          <div class="outcome" id="outcome">Press Play to Start</div>
+          <div class="score" id="scoreBoard">You: <span id="yourScore">0</span> • AI: <span id="aiScore">0</span></div>
+        </div>
+      </div>
+
+      <div class="control-panel">
+        <div class="mode-tabs">
+          <button class="tab active" data-mode="camera">Camera Mode</button>
+          <button class="tab" data-mode="manual">Manual Mode</button>
+        </div>
+        <div class="play-area">
+          <div class="mode camera-mode active" id="cameraMode">
+            <button id="playBtn" class="play-button" disabled>
+              <span class="icon">▶</span>
+              <span class="text">Play Round</span>
+            </button>
+            <div class="camera-status" id="cameraStatus">Enable camera to play</div>
+          </div>
+          <div class="mode manual-mode" id="manualMode">
+            <div class="notice" id="manualNotice">AI will lock its move first, then choose yours.</div>
+            <div class="choices">
+              <button class="choice-btn" data-move="rock"><span class="emoji">🗿</span><span class="name">Rock</span></button>
+              <button class="choice-btn" data-move="paper"><span class="emoji">📄</span><span class="name">Paper</span></button>
+              <button class="choice-btn" data-move="scissors"><span class="emoji">✂️</span><span class="name">Scissors</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="resetBtn" class="btn outlined">Reset Game</button>
+        </div>
+      </div>
+    </main>
+
+    <video id="hiddenVideo" style="display:none;" playsinline></video>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
